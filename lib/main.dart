@@ -4,9 +4,7 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -162,9 +160,11 @@ class _LoginPageState extends State<LoginPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        "Don't have an account?",
-                        style: textTheme.bodyMedium,
+                      Flexible(
+                        child: Text(
+                          "Don't have an account?",
+                          style: textTheme.bodyMedium,
+                        ),
                       ),
                       TextButton(
                         onPressed: () {},
