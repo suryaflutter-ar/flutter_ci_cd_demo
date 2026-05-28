@@ -13,10 +13,23 @@ platform :android do
     firebase_app_distribution(
       app: "1:683246828236:android:8a04b1958717eaa249a069",
       apk_path: "../build/app/outputs/flutter-apk/app-debug.apk",
-      firebase_cli_token: ENV["FIREBASE_TOKEN"],
+      firebase_cli_token: ENV["FIREBASE_TOKEN"].to_s.empty? ? nil : ENV["FIREBASE_TOKEN"],
       #groups: "qa-testers",
       testers: "surya.nadiminti@swarnasky.com, ajay.bandamidhi@swarnasky.com",
       release_notes: "QA build from fastlane"
+    )
+  end
+
+  desc "Build a signed release APK and distribute to Firebase App Distribution"
+  lane :qa_release do
+    gradle(task: "clean assembleRelease")
+
+    firebase_app_distribution(
+      app: "1:683246828236:android:8a04b1958717eaa249a069",
+      apk_path: "../build/app/outputs/flutter-apk/app-release.apk",
+      firebase_cli_token: ENV["FIREBASE_TOKEN"].to_s.empty? ? nil : ENV["FIREBASE_TOKEN"],
+      testers: "surya.nadiminti@swarnasky.com, ajay.bandamidhi@swarnasky.com",
+      release_notes: "Signed release QA build from fastlane"
     )
   end
 

@@ -31,6 +31,14 @@ Runs all the tests
 
 Build a QA APK and distribute to Firebase App Distribution
 
+### android qa_release
+
+```sh
+[bundle exec] fastlane android qa_release
+```
+
+Build a signed release APK and distribute to Firebase App Distribution
+
 ### android deploy
 
 ```sh
