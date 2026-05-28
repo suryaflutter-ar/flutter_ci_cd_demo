@@ -1,0 +1,27 @@
+default_platform(:android)
+
+platform :android do
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc "Build a QA APK and distribute to Firebase App Distribution"
+  lane :qa do
+    gradle(task: "clean assembleDebug")
+
+    firebase_app_distribution(
+      app: "1:683246828236:android:8a04b1958717eaa249a069",
+      apk_path: "../build/app/outputs/flutter-apk/app-debug.apk",
+      #groups: "qa-testers",
+      testers: "surya.nadiminti@swarnasky.com, ajay.bandamidhi@swarnasky.com",
+      release_notes: "QA build from fastlane"
+    )
+  end
+
+  desc "Deploy a new version to the Google Play"
+  lane :deploy do
+    gradle(task: "clean assembleRelease")
+    upload_to_play_store
+  end
+end

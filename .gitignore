@@ -43,3 +43,20 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Firebase config (injected via CI secrets, not committed)
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+
+# Android signing (keystore + credentials)
+*.jks
+*.keystore
+android/key.properties
+
+# Fastlane local credentials
+android/fastlane/report.xml
+**/*.p8
+service-account*.json
+
+# Claude Code local settings
+.claude/
